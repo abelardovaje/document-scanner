@@ -15,15 +15,19 @@ export default class Test extends Component {
 
   render() {
     return (
-      <View style={{flex:1}}>
-         <DocumentScanner
-          onPictureTaken={data => {
-            console.log(data.path);
-          }}
-          enableTorch={false}
-          detectionCountBeforeCapture={5}
+        <View style={{ flex: 1, backgroundColor: 'red' }}>
+        <DocumentScanner style={{ flex: 1 }}
+            ref={(ref) => this.scanner = ref}
+            manualOnly
+            noGrayScale
+            enableTorch
+            onPictureTaken={data  =>{
+                console.log('data:',data.path)
+            }}
+            detectionCountBeforeCapture={10}
         />
-      </View>
+        <Button title="capture" onPress={()=>this._open()}/>
+    </View>
     );
   }
 }
